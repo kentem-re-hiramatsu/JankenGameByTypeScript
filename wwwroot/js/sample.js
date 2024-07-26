@@ -6,6 +6,10 @@
             const main = document.querySelector('main');
             const cpuSection = document.getElementById('cpuHand');
             const jankenResult = document.getElementById('result');
+            const historyButton = document.getElementById('historyButton');
+            historyButton === null || historyButton === void 0 ? void 0 : historyButton.addEventListener('click', () => {
+                window.location.href = '../Views/sub.html';
+            });
             this.img = document.createElement('img');
             this.img.src = this.GetCpuHand();
             this.img.width = 220;
@@ -84,9 +88,26 @@
             this.DataSave(userResult, cpuResult, jankenResult);
             return jankenResult;
         }
+        GetHandString(handNum) {
+            let hand;
+            switch (handNum) {
+                case 0:
+                    hand = 'グー';
+                    break;
+                case 1:
+                    hand = 'チョキ';
+                    break;
+                case 2:
+                    hand = 'パー';
+                    break;
+                default: hand = '';
+            }
+            return hand;
+        }
         DataSave(userHand, cpuHand, result) {
-            const data = { user: userHand, cpu: cpuHand, result: result };
             const dataLength = localStorage.length;
+            const gameCount = dataLength + 1;
+            const data = { gameCount, user: this.GetHandString(userHand), cpu: this.GetHandString(cpuHand), result: result };
             const dataKey = 'data' + dataLength;
             localStorage.setItem(dataKey, JSON.stringify(data));
         }

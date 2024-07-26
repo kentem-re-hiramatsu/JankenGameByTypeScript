@@ -9,6 +9,12 @@
             const cpuSection: HTMLElement | null = document.getElementById('cpuHand');
             const jankenResult: HTMLElement | null = document.getElementById('result');
 
+            const historyButton: HTMLElement | null = document.getElementById('historyButton');
+
+            historyButton?.addEventListener('click',() => {
+                window.location.href = '../Views/sub.html';
+            });
+
             this.img = document.createElement('img');
             this.img.src = this.GetCpuHand();
             this.img.width = 220;
@@ -104,7 +110,7 @@
             return jankenResult;
         }
 
-        GetHandString(handNum: number):string {
+        GetHandString(handNum: number): string {
             let hand: string;
             switch (handNum) {
                 case 0:
@@ -124,8 +130,8 @@
         DataSave(userHand: number, cpuHand: number, result: string): void {
             const dataLength = localStorage.length;
             const gameCount: number = dataLength + 1;
-            const data: { gameCount: number, user: string, cpu: string, result: string } = 
-            { gameCount, user: this.GetHandString(userHand), cpu: this.GetHandString(cpuHand), result: result };
+            const data: { gameCount: number, user: string, cpu: string, result: string } =
+                { gameCount, user: this.GetHandString(userHand), cpu: this.GetHandString(cpuHand), result: result };
             const dataKey: string = 'data' + dataLength;
 
             localStorage.setItem(dataKey, JSON.stringify(data));
