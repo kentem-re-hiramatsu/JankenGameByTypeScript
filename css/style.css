@@ -49,3 +49,8 @@ label,
     background: rgb(69, 156, 255);
     box-shadow: rgb(31, 132, 247) 0 3px;
 }
+
+.inactive{
+    pointer-events: none;
+    opacity: 0.5;
+}

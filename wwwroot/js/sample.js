@@ -18,15 +18,20 @@
             startButton.textContent = 'Start';
             startButton.addEventListener('click', () => {
                 this.SpinCpuHand();
+                matchButton.classList.remove('inactive');
+                startButton.classList.add('inactive');
             });
             const matchButton = document.createElement('div');
             matchButton.id = 'matchButton';
             matchButton.textContent = '勝負!!';
+            matchButton.classList.add('inactive');
             const h2 = document.createElement('h2');
             matchButton.addEventListener('click', () => {
                 clearTimeout(this.timeoutId);
                 h2.textContent = this.CheckHand();
                 jankenResult === null || jankenResult === void 0 ? void 0 : jankenResult.appendChild(h2);
+                startButton.classList.remove('inactive');
+                matchButton.classList.add('inactive');
             });
             game.appendChild(startButton);
             game.appendChild(matchButton);

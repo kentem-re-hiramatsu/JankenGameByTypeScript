@@ -22,19 +22,25 @@
             const startButton: HTMLDivElement = document.createElement('div');
             startButton.id = 'gameStartButton';
             startButton.textContent = 'Start';
+
             startButton.addEventListener('click', () => {
                 this.SpinCpuHand();
+                matchButton.classList.remove('inactive');
+                startButton.classList.add('inactive');
             });
 
             const matchButton: HTMLDivElement = document.createElement('div');
             matchButton.id = 'matchButton';
             matchButton.textContent = '勝負!!';
+            matchButton.classList.add('inactive');
             const h2: HTMLElement = document.createElement('h2');
 
             matchButton.addEventListener('click', () => {
                 clearTimeout(this.timeoutId);
                 h2.textContent = this.CheckHand();
                 jankenResult?.appendChild(h2);
+                startButton.classList.remove('inactive');
+                matchButton.classList.add('inactive');
             });
 
             game.appendChild(startButton);
@@ -47,7 +53,6 @@
             const scissorsSrc: string = "../img/janken_choki.png";
             const paperSrc: string = "../img/janken_pa.png";
             const jankens: readonly string[] = [rockSrc, scissorsSrc, paperSrc];
-
             return jankens[Math.floor(Math.random() * jankens.length)];
         }
 
