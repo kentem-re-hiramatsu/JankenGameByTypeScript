@@ -100,8 +100,16 @@
             else {
                 jankenResult = 'LOSE';
             }
-
+            this.DataSave(userResult,cpuResult,jankenResult);
             return jankenResult;
+        }
+
+        DataSave(userHand:number,cpuHand:number,result:string):void{
+            const data : {user: number,cpu: number, result:string} = {user:userHand,cpu:cpuHand,result:result};
+            const dataLength = localStorage.length;
+            const dataKey:string = 'data' + dataLength;
+
+            localStorage.setItem(dataKey,JSON.stringify(data));
         }
     }
 

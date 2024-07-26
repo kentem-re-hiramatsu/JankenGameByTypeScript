@@ -81,7 +81,14 @@
             else {
                 jankenResult = 'LOSE';
             }
+            this.DataSave(userResult, cpuResult, jankenResult);
             return jankenResult;
+        }
+        DataSave(userHand, cpuHand, result) {
+            const data = { user: userHand, cpu: cpuHand, result: result };
+            const dataLength = localStorage.length;
+            const dataKey = 'data' + dataLength;
+            localStorage.setItem(dataKey, JSON.stringify(data));
         }
     }
     new Game();
