@@ -1,0 +1,51 @@
+body {
+    background: gainsboro;
+}
+
+main {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background: white;
+    padding: 16px 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+label,
+#rock,
+#scissors,
+#paper{
+    user-select: none;
+}
+
+.game{
+    display: flex;
+}
+
+#matchButton,
+#historyButton,
+#gameStartButton
+ {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 20px;
+}
+
+#matchButton,
+#gameStartButton
+{
+    background: rgb(255, 106, 106);
+    box-shadow: rgb(255, 0, 0) 0 3px;
+}
+
+#historyButton {
+    background: rgb(69, 156, 255);
+    box-shadow: rgb(31, 132, 247) 0 3px;
+}
