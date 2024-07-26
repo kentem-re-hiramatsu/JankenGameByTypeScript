@@ -100,16 +100,35 @@
             else {
                 jankenResult = 'LOSE';
             }
-            this.DataSave(userResult,cpuResult,jankenResult);
+            this.DataSave(userResult, cpuResult, jankenResult);
             return jankenResult;
         }
 
-        DataSave(userHand:number,cpuHand:number,result:string):void{
-            const data : {user: number,cpu: number, result:string} = {user:userHand,cpu:cpuHand,result:result};
-            const dataLength = localStorage.length;
-            const dataKey:string = 'data' + dataLength;
+        GetHandString(handNum: number):string {
+            let hand: string;
+            switch (handNum) {
+                case 0:
+                    hand = 'グー';
+                    break
+                case 1:
+                    hand = 'チョキ';
+                    break
+                case 2:
+                    hand = 'パー';
+                    break
+                default: hand = '';
+            }
+            return hand;
+        }
 
-            localStorage.setItem(dataKey,JSON.stringify(data));
+        DataSave(userHand: number, cpuHand: number, result: string): void {
+            const dataLength = localStorage.length;
+            const gameCount: number = dataLength + 1;
+            const data: { gameCount: number, user: string, cpu: string, result: string } = 
+            { gameCount, user: this.GetHandString(userHand), cpu: this.GetHandString(cpuHand), result: result };
+            const dataKey: string = 'data' + dataLength;
+
+            localStorage.setItem(dataKey, JSON.stringify(data));
         }
     }
 
