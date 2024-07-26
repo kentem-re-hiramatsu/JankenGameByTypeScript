@@ -32,7 +32,7 @@ label,
     width: 100px;
     height: 30px;
     line-height: 30px;
-    margin: 0 auto;
+    margin: 16px auto;
     cursor: pointer;
     user-select: none;
     border-radius: 20px;
@@ -45,9 +45,20 @@ label,
     box-shadow: rgb(255, 0, 0) 0 3px;
 }
 
+#gameStartButton:active
+{
+    box-shadow: rgb(255, 0, 0) 0 1px;
+    transform: translateY(0.2em);
+}
+
 #historyButton {
     background: rgb(69, 156, 255);
     box-shadow: rgb(31, 132, 247) 0 3px;
+}
+
+#historyButton:active {
+    box-shadow: rgb(31, 132, 247) 0 1px;
+    transform: translateY(0.2em);
 }
 
 .inactive{
