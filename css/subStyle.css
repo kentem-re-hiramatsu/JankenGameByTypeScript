@@ -1,0 +1,35 @@
+body{
+    background: gainsboro;
+}
+
+main{
+    width: 400px;
+    margin: 0 auto;
+}
+
+table{
+    margin:  0 auto;
+    background: white;
+    padding: 16px;
+}
+
+th{
+    padding: 0 4px;
+}
+
+#returnGame{
+    width: 40px;
+    text-align: center;
+    margin-top: 8px;
+    padding: 4px;
+    background: rgb(69, 156, 255);
+    box-shadow: rgb(0, 119, 255) 0 3px;
+    border-radius: 8px;
+    user-select: none;
+    cursor: pointer;
+}
+
+#returnGame:active{
+    box-shadow: rgb(0, 119, 255) 0 1px;
+    transform: translateY(0.2em);
+}
