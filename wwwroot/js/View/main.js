@@ -114,4 +114,4 @@
     }
     new Game();
 }
-//# sourceMappingURL=sample.js.map
+//# sourceMappingURL=main.js.map
