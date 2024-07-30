@@ -25,6 +25,11 @@ label,
     display: flex;
 }
 
+#button{
+    display: flex;
+}
+
+#resetButton,
 #matchButton,
 #historyButton,
 #gameStartButton
@@ -51,12 +56,18 @@ label,
     transform: translateY(0.2em);
 }
 
+#resetButton,
 #historyButton {
     background: rgb(69, 156, 255);
     box-shadow: rgb(31, 132, 247) 0 3px;
 }
 
 #historyButton:active {
+    box-shadow: rgb(31, 132, 247) 0 1px;
+    transform: translateY(0.2em);
+}
+
+#resetButton:active{
     box-shadow: rgb(31, 132, 247) 0 1px;
     transform: translateY(0.2em);
 }

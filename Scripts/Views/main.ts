@@ -7,14 +7,22 @@ import { Manager } from "../Manager/manager.js";
     const jankenResult: HTMLElement | null = document.getElementById('result');
 
     const historyButton: HTMLElement | null = document.getElementById('historyButton');
+    const resetButton: HTMLElement | null = document.getElementById('resetButton');
 
-    let timeoutId:NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
 
+    //履歴ボタンの処理
     historyButton!.addEventListener('click', () => {
         window.location.href = '../Views/sub.html';
     });
 
-    const  img: HTMLImageElement = document.createElement('img');
+    //リセットボタンの処理
+    resetButton!.addEventListener('click', () => {
+        localStorage.clear();
+        mgr.Clear();
+    });
+
+    const img: HTMLImageElement = document.createElement('img');
     img.src = "../../img/janken_gu.png";
     img.width = 220;
     img.height = 220;
@@ -28,6 +36,7 @@ import { Manager } from "../Manager/manager.js";
     startButton.id = 'gameStartButton';
     startButton.textContent = 'Start';
 
+    //スタートボタンの処理
     startButton.addEventListener('click', () => {
         SpinCpuHand();
         matchButton.classList.remove('inactive');
@@ -40,12 +49,14 @@ import { Manager } from "../Manager/manager.js";
     matchButton.classList.add('inactive');
     const h2: HTMLElement = document.createElement('h2');
 
+    //対戦ボタンの処理
     matchButton.addEventListener('click', () => {
         clearTimeout(timeoutId);
+        //ラジオボタンのチェック取得
         const selectedHand = Array.from(document.getElementsByName('janken') as NodeListOf<HTMLInputElement>)
-        .find(radio => radio.checked)!.value;
-        h2.textContent = mgr.CheckHand(Number(selectedHand),img.src);
-        jankenResult?.appendChild(h2);
+            .find(radio => radio.checked)!.value;
+        h2.textContent = mgr.CheckHand(Number(selectedHand), img.src);
+        jankenResult!.appendChild(h2);
         startButton.classList.remove('inactive');
         matchButton.classList.add('inactive');
         mgr.DataSave();
@@ -53,8 +64,9 @@ import { Manager } from "../Manager/manager.js";
 
     game.appendChild(startButton);
     game.appendChild(matchButton);
-    main?.appendChild(game);
+    main!.appendChild(game);
 
+    //CPUのじゃんけん
     const SpinCpuHand = (): void => {
         img.src = mgr.GetHandImg();
         timeoutId = setTimeout(() => {

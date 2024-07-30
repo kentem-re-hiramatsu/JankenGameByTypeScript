@@ -6,9 +6,16 @@ import { Manager } from "../Manager/manager.js";
     const cpuSection = document.getElementById('cpuHand');
     const jankenResult = document.getElementById('result');
     const historyButton = document.getElementById('historyButton');
+    const resetButton = document.getElementById('resetButton');
     let timeoutId;
+    //履歴ボタンの処理
     historyButton.addEventListener('click', () => {
         window.location.href = '../Views/sub.html';
+    });
+    //リセットボタンの処理
+    resetButton.addEventListener('click', () => {
+        localStorage.clear();
+        mgr.Clear();
     });
     const img = document.createElement('img');
     img.src = "../../img/janken_gu.png";
@@ -20,6 +27,7 @@ import { Manager } from "../Manager/manager.js";
     const startButton = document.createElement('div');
     startButton.id = 'gameStartButton';
     startButton.textContent = 'Start';
+    //スタートボタンの処理
     startButton.addEventListener('click', () => {
         SpinCpuHand();
         matchButton.classList.remove('inactive');
@@ -30,19 +38,22 @@ import { Manager } from "../Manager/manager.js";
     matchButton.textContent = '勝負!!';
     matchButton.classList.add('inactive');
     const h2 = document.createElement('h2');
+    //対戦ボタンの処理
     matchButton.addEventListener('click', () => {
         clearTimeout(timeoutId);
+        //ラジオボタンのチェック取得
         const selectedHand = Array.from(document.getElementsByName('janken'))
             .find(radio => radio.checked).value;
         h2.textContent = mgr.CheckHand(Number(selectedHand), img.src);
-        jankenResult === null || jankenResult === void 0 ? void 0 : jankenResult.appendChild(h2);
+        jankenResult.appendChild(h2);
         startButton.classList.remove('inactive');
         matchButton.classList.add('inactive');
         mgr.DataSave();
     });
     game.appendChild(startButton);
     game.appendChild(matchButton);
-    main === null || main === void 0 ? void 0 : main.appendChild(game);
+    main.appendChild(game);
+    //CPUのじゃんけん
     const SpinCpuHand = () => {
         img.src = mgr.GetHandImg();
         timeoutId = setTimeout(() => {
