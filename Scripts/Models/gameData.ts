@@ -3,8 +3,6 @@
 import { HandType } from "../Enums/handType";
 import { ResultType } from "../Enums/resultType";
 
-
-
 export class GameData {
     private _gameCount: number;
     private _userHand: HandType;
